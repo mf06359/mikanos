@@ -153,6 +153,8 @@ EFI_STATUS EFIAPI UefiMain(
 
   // #@@range_begin(exit_bs)
   EFI_STATUS status;
+  Print(L"get status for Exit Boot Services\n");
+  Print(L"kernel = %lx\n", kernel_base_addr);
   status = gBS->ExitBootServices(image_handle, memmap.map_key);
   if (EFI_ERROR(status)) {
     status = GetMemoryMap(&memmap);
@@ -169,7 +171,7 @@ EFI_STATUS EFIAPI UefiMain(
   // #@@range_end(exit_bs)
 
   // #@@range_begin(call_kernel)
-  UINT64 entry_addr = *(UINT64*)(kernel_base_addr + 24);
+  UINT64 entry_addr = 0x100120;//*(UINT64*)(kernel_base_addr + 24);
 
   typedef void EntryPointType(void);
   EntryPointType* entry_point = (EntryPointType*)entry_addr;
