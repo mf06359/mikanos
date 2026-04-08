@@ -374,8 +374,7 @@ EFI_STATUS EFIAPI UefiMain(
     //    Print(L"error: %r", status);
     //    Halt();
     //  }
-    //  Print(L"Kernel: 0x%0lx (%lu bytes)\n", kernel_base_addr, kernel_file_size);
-    //  Print(L"Entry Point: 0x%0lx (%lu bytes)\n", *(UINT64*)(kernel_base_addr + 24), kernel_file_size);
+    Print(L"Entry Point: 0x%0lx\n", *(UINT64*)(kernel_first_addr + 24));
     //
     // #@@range_begin(exit_bs)
     status = gBS->ExitBootServices(image_handle, memmap.map_key);
@@ -393,6 +392,7 @@ EFI_STATUS EFIAPI UefiMain(
     }
     // #@@range_end(exit_bs)
 
+    /*
     UINT64 entry_addr = *(UINT64*)(kernel_first_addr + 24);
 
     struct FrameBufferConfig config = {
@@ -417,6 +417,7 @@ EFI_STATUS EFIAPI UefiMain(
     typedef void EntryPointType(const struct FrameBufferConfig*);
     EntryPointType* entry_point = (EntryPointType*)entry_addr;
     entry_point(&config);
+    */
 
     Print(L"All done\n");
 
