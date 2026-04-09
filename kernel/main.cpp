@@ -124,7 +124,7 @@ extern "C" void KernelMain(const FrameBufferConfig& frame_buffer_config) {
 
   // #@@range_begin(write_aa)
   WriteAscii(*pixel_writer, 50, 50, 'A', {0, 0, 0});
-  WriteAscii(*pixel_writer, 58, 50, 'A', {0, 0, 0});
+  WriteAscii(*pixel_writer, 54, 50, 'A', {0, 0, 0});
   // #@@range_end(write_aa)
   while (1) __asm__("hlt");
 }
